@@ -1,13 +1,11 @@
 from rest_framework.response import Response
 from rest_framework import status
-from django.views.decorators.csrf import csrf_exempt
 from rest_framework.decorators import api_view
 import redis
 
 r = redis.Redis(host='localhost', port=6379, db=0)
 
 @api_view(['POST', 'GET', 'PUT', 'DELETE'])
-@csrf_exempt
 def kvstore(request, key, value=None, format=None):
 
     if request.method == 'GET':
